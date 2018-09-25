@@ -6,8 +6,21 @@ import java.io.InputStreamReader;
 
 public class userInputHandler
 {
+	public userInputHandler() // constructor
+	{
+		displayMenu(true);
+	}
 	
-	private static String getUserInput()
+	private void displayMenu(Boolean startUp)
+	{
+		if (startUp)
+		{
+			System.out.println("Robot: Enter your message please");
+		}
+		System.out.print(" ");
+	}
+	
+	public String getUserInput()
 	{
 		
 		String userInput = null;
@@ -24,27 +37,10 @@ public class userInputHandler
 		return userInput;
 	}
 	
-	private static String getResponse(String[] responses, String userInput)
+	public void sendMessage(String message) // ChatBot doesn't control the message
 	{
-		String tag;
-		String response;
-		String[] array;
+		// System.out.println();
+		System.out.println("Robot: " + message);
 		
-		for (String responseLine: responses)
-		{
-			if (responseLine != null)
-			{
-				array = responseLine.split(" - ");
-				tag = array[0];
-				response = array[1];
-				
-				if (tag.compareToIgnoreCase(userInput) == 0)
-				{
-					return response;
-				}
-			}
-		}
-		
-		return "I am sorry, I am not able to respond to this yet";
 	}
 }
