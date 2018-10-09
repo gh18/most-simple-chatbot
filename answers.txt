@@ -1,4 +1,4 @@
-sup? - Wazzzzzzup!
+
 hey - Nice to see you!
 hi - Hello
 hello - Hey! How is it going?
@@ -38,3 +38,4 @@ fuck off - Shut your hole, you little dumb ass
 do you speak russian? - Not yet
 you suck - LOL
 lol - Laughing makes you live longer. Anything else you want to discuss?
+help - I am a simple chatbot. Type your message to communicate.

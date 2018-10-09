@@ -4,92 +4,74 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AnswerStorage {
 
-    String fileName;
-    String[] responses = new String[0];
-    int lines;
+	ArrayList<String> responses;
 
-    public AnswerStorage(String fileName)
-    {
-        this.fileName = fileName;
-        getNumberOfLines();
-        getResponsesArray();
-    }
+	public AnswerStorage(String fileName) {
+		getResponsesArray(fileName);
+	}
 
-    private void getNumberOfLines()
-    {
-        int lines = 0;
+	/*
+	 * private int getNumberOfLines(String fileName) // исп-ть лист вместо массива {
+	 * 
+	 * int numOfLines = 0;
+	 * 
+	 * try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+	 * while (br.readLine() != null) numOfLines++; } catch (IOException error) {
+	 * System.out.println("Error occured: " + error); System.exit(1); // что-то тут
+	 * исправить }
+	 * 
+	 * return numOfLines; // this.numOfLines = numOfLines; }
+	 */
 
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-        {
-            while (br.readLine() != null)
-                lines++;
-        }
-        catch(IOException error)
-        {
-            System.out.println("Error occured: " + error);
-            System.exit(1);
-        }
+	private void getResponsesArray(String fileName) {
+		ArrayList<String> arrayList = new ArrayList<String>();
 
-        this.lines = lines;
-    }
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+			String line = br.readLine();
 
-    private void getResponsesArray()
-    {
-        int lineCount = 0;
-        String line;
-        String[] responsesArray = new String[lines];
+			while (line != null) {
+				line = br.readLine();
+				arrayList.add(line);
+				// responsesArray[lineCount] = line;
+				// lineCount++;
+			}
 
-        try(BufferedReader br = new BufferedReader(new FileReader(fileName)))
-        {
-            do
-            {
-                line = br.readLine();
-                if (line != null)
-                {
-                    responsesArray[lineCount] = line;
-                    lineCount++;
-                }
-            }
-            while (line != null);
-        }
-        catch (FileNotFoundException missingFile)
-        {
-            System.out.println("File not found " + missingFile);
-            System.exit(1);
-        }
-        catch (IOException error)
-        {
-            System.out.println("Error ocurred: " + error);
-            System.exit(1);
-        }
-        responses = responsesArray;
-    }
+		} catch (FileNotFoundException missingFile) {
+			System.out.println("File not found " + missingFile);
+			System.exit(1);
+		} catch (IOException error) {
+			System.out.println("Error ocurred: " + error);
+			System.exit(1);
+		}
+		responses = arrayList;
+	}
 
-    // gets simpleChatBot response to user command
-    public String getResponse(String userInput)
-    {
-        String tag;
-        String response;
-        String[] array;
+	// gets simpleChatBot response to user command
+	public String getResponse(String userInput) {
+		String tag;
+		String response;
+		String[] array;
 
-        for (String responseLine: this.responses)
-        {
-            if (responseLine != null)
-            {
-                array = responseLine.split(" - ");
-                tag = array[0];
-                response = array[1];
+		if (userInput == null) {
+			return "";
+		}
 
-                if (tag.compareToIgnoreCase(userInput) == 0)
-                {
-                    return response;
-                }
-            }
-        }
+		for (String responseLine : this.responses) {
+			if (responseLine != null) {
+				array = responseLine.split(" - ");
+				tag = array[0];
+				response = array[1];
 
-        return "I am sorry, I am not able to respond to this";
-    }
+				if (tag.compareToIgnoreCase(userInput) == 0) {
+					return response;
+				}
+			}
+		}
+
+		return "I am sorry, I am not able to respond to this";
+	}
 }
