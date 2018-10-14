@@ -1,0 +1,5 @@
+file - file found
+number of string lines - 5 string lines
+help - this is a simple local chat bot
+yes - yes
+no - no

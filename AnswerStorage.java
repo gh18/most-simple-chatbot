@@ -48,9 +48,10 @@ public class AnswerStorage {
 			System.exit(1);
 		}
 		responses = arrayList;
+		// responses.
 	}
 
-	// gets simpleChatBot response to user command
+	// gets simpleChatBot response to user input
 	public String getResponse(String userInput) {
 		String tag;
 		String response;

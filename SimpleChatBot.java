@@ -6,7 +6,7 @@ public class SimpleChatBot {
 	// private String fileName = "src/simpleChatBot/answers.txt";
 	private AnswerStorage answer;
 	private UserInputHandler handler; // проверить переменные
-	// оставить хэндлер и респонс (ансер?)
+	// оставить хэндлер и ансер
 
 	public SimpleChatBot(String fileName) {
 		answer = new AnswerStorage(fileName);
@@ -16,7 +16,8 @@ public class SimpleChatBot {
 	}
 
 	public void startBot() {
-		String userInput; // вне цикла чтобы не выделялась лишняя память => быстрее
+		String userInput; // вне цикла чтобы не выделялась лишняя память => быстрее (хоть и будет
+							// удаляться)
 		String response;
 		// loop
 		do {
